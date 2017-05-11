@@ -1,0 +1,13 @@
+---
+layout: default
+title: home
+---
+<p style="font-size: 36px; line-height:46px; font-weight: normal;"><a href="/about.html">Mauro</a>.is here, nice to meet you!</p>
+
+<ul class = "posts">
+{% for post in site.posts %}
+    <li class="index">
+      <div class="index-date">{{ post.date | date: "%Y.%m.%d" }}</div><a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+{% endfor %}
+</ul>
