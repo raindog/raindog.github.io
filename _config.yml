@@ -1,4 +1,16 @@
+# Permalinks
+permalink: pretty
+
+# About/contact
+author:
+  name:              Mauro Seno
+  url:               https://mauro.is/
+  email: mauroseno@gmail.com
+
 highlighter: "rouge"
 name: mauro.is
-description: Mauro Seno
+description: Mauro Seno is an italian software developer.
 url: http://mauro.is/
+
+google_analytics: UA-38321664-1
+excerpt_separator: "<!-- more -->"

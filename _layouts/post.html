@@ -1,45 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+---
+layout: default
+---
+<div span="title"><a href="/">home</a></div>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="/stylesheets/main.css" type="text/css" media="screen" charset="utf-8" />
-  <link rel="stylesheet" href="/stylesheets/syntax.css" type="text/css" media="screen" charset="utf-8" />
-  <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ site.url }}/feed.xml">
-  <script src="/javascripts/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
+    </header>
 
-  <script type="text/javascript">
-   var _gaq = _gaq || [];
-   _gaq.push(['_setAccount', 'UA-38321664-1']);
-   _gaq.push(['_trackPageview']);
-
-   (function() {
-       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-   })();
-  </script>
-
-</head>
-<body>
-  <div class = 'site'>
-    <div span="title"><a href="/">home</a></div>
-
-    <div id = 'post'>{{ content }}</div>
-    <div class='footer'>
-      <div class="contact">
-        <p>
-          Mauro Seno<br />
-            <a href="http://twitter.com/alpharbal">@alpharbal</a><br/>
-          <a href="http://github.com/raindog">github.com/raindog</a><br/>
-          mauroseno at gmail dot com<br/>
-        </p>
-      </div>
+    <div id="post" itemprop="articleBody">
+        {{ content }}
     </div>
-  </div>
-</body>
-</html>
+
+    {% if site.disqus.shortname %}
+    {% include disqus_comments.html %}
+    {% endif %}
+    
+</article>
+
+
+
+
+
+
+
+
+
 
