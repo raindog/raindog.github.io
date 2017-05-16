@@ -1,5 +1,4 @@
-# Permalinks
-permalink: pretty
+permalink: /404.html
 
 # About/contact
 author:
@@ -14,3 +13,6 @@ url: http://mauro.is/
 
 google_analytics: UA-38321664-1
 excerpt_separator: "<!-- more -->"
+
+exclude:
+    - node_modules

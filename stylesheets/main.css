@@ -14,15 +14,16 @@ body {
 }
 
 h1,h2,h3 {
-    font-family: 'DejaVuSerifCondensed-Bold', Arial, sans-serif;
+    font-family: '>DejaVuSerifCondensed-Bold', Arial, sans-serif;
 }
 
 a {
-    background: #cff235;
+    background: #fef200;
     color: #000;
     padding: 4px;
     text-decoration: none;
 }
+
 
 a:hover {
     background: white;
@@ -57,13 +58,21 @@ ul.posts span {
 li.index a {
     background: white;
 }
+
 li.index a:hover {
-    background: #cff235;
+    background: #fef200;
+}
+
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 .site {
     font-size: 110%;
     width: 44em;
+    max-width: 90%;
     margin: 1em auto 2em auto;
     line-height: 1.5em;
 }
@@ -165,19 +174,17 @@ blockquote{
     margin-bottom: .4em;
 }
 
+#hero {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#licence a {
+    background-color: white;
+    border-bottom:solid 2px #fef200;
+}
+time {
+    color: grey;
+    margin: 30px auto;
+    display: block;
+}

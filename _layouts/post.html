@@ -10,15 +10,18 @@ layout: default
     </header>
 
     <div id="post" itemprop="articleBody">
-        <time>{{ page.date | date: "%d %B %Y" }}</time>
-            {{ content }}
-    </div>
+        {{ content }}
 
-    {% if site.disqus.shortname %}
-    {% include disqus_comments.html %}
-    {% endif %}
+    </div>
     
 </article>
+
+<time>{{ page.date | date: "%d %B %Y" }}</time>
+
+{% if site.disqus.shortname %}
+{% include disqus_comments.html %}
+{% endif %}
+
 
 
 
