@@ -2,12 +2,17 @@
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
     {% include head.html %}
     <body>
-        <div class = 'site'>
-            {{ content }}
+        <div class="site">
+            <header class="site-header">
+                {% unless page.url == "/" %}<nav><a href="{{ "/" | relative_url }}">home</a></nav>{% endunless %}
+                {% include theme-toggle.html %}
+            </header>
+            <main>
+                {{ content }}
+            </main>
             <footer>
                 {% include footer.html %}
             </footer>
         </div>
     </body>
 </html>
-

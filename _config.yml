@@ -7,11 +7,10 @@ author:
   email: mauroseno@gmail.com
 
 highlighter: "rouge"
-name: mauro.is
+title: mauro.is
 description: Mauro Seno is an italian software developer.
-url: http://mauro.is/
+url: https://mauro.is
 
-google_analytics: UA-38321664-1
 excerpt_separator: "<!-- more -->"
 
 exclude:
