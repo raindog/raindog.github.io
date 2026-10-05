@@ -1,261 +1,190 @@
-/* ==========================================================================
-   Theme
-   Colors are declared once with light-dark(): the active scheme is chosen by
-   `color-scheme`, which follows the OS preference and is inverted by the
-   #theme-toggle checkbox (pure CSS, JS only remembers the choice).
-   ========================================================================== */
-:root {
-    color-scheme: light dark;
-
-    --bg:        light-dark(#fff, #141414);
-    --fg:        light-dark(#000, #e6e6e6);
-    --muted:     light-dark(#666, #9a9a9a);
-    --subtle:    light-dark(#eee, #2a2a2a);
-    --border:    light-dark(#ccc, #444);
-    --code-bg:   light-dark(#fff, #1c1c1c);
-    --accent:    #fef200;
-    --on-accent: #000;
-
-    --font-body:    Georgia, 'Times New Roman', Times, serif;
-    --font-heading: 'DejaVu Serif Condensed', Arial, sans-serif;
-    --font-mono:    ui-monospace, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-@media (prefers-color-scheme: light) {
-    :root:has(#theme-toggle:checked) { color-scheme: dark; }
-}
-
-@media (prefers-color-scheme: dark) {
-    :root:has(#theme-toggle:checked) { color-scheme: light; }
-}
-
-@font-face {
-    font-family: 'DejaVu Serif Condensed';
-    font-weight: 700;
-    font-display: swap;
-    src: local('DejaVu Serif Condensed Bold'), local('DejaVuSerifCondensed-Bold'),
-         url('DejaVuSerifCondensed-Bold.woff2') format('woff2');
-}
-
-/* ==========================================================================
-   Base
-   ========================================================================== */
-*, *::before, *::after {
-    box-sizing: border-box;
+* {
     margin: 0;
     padding: 0;
 }
 
-html {
-    font-size: 137.5%;
-    -webkit-font-smoothing: antialiased;
-    text-size-adjust: 100%;
+html, body {
+    height: 100%;
 }
 
 body {
-    min-height: 100dvh;
-    background-color: var(--bg);
-    color: var(--fg);
-    font-family: var(--font-body);
+    background-color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 18px;
 }
 
-img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-}
-
-/* Vertical rhythm (from Typebase) */
-p, li, blockquote { line-height: 1.5rem; }
-p { margin-top: 1.5rem; }
-ul, ol, blockquote { margin-block: 1.5rem; }
-:is(ul, ol) :is(ul, ol) { margin-block: 0; }
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    margin-top: 1.5rem;
-    line-height: 1.5rem;
-}
-h1 { font-size: 4.242rem; line-height: 4.5rem; margin-top: 3rem; }
-h2 { font-size: 2.828rem; line-height: 3rem;   margin-top: 3rem; }
-h3 { font-size: 1.414rem; }
-h4 { font-size: 0.707rem; }
-
-table {
-    margin-top: 1.5rem;
-    border-collapse: collapse;
-    font: inherit;
-}
-
-blockquote {
-    margin-left: 2em;
-    font-style: italic;
-    line-height: 180%;
-    font-size: 95%;
+h1,h2,h3 {
+    font-family: '>DejaVuSerifCondensed-Bold', Arial, sans-serif;
 }
 
 a {
-    background: var(--accent);
-    color: var(--on-accent);
+    background: #fef200;
+    color: #000;
     padding: 4px;
     text-decoration: none;
 }
 
+
 a:hover {
-    background: transparent;
-    color: var(--fg);
+    background: white;
+    color: #000;
 }
 
-:focus-visible {
-    outline: 2px solid var(--fg);
-    outline-offset: 2px;
+a:visited {
+    color: #000;
 }
 
-/* ==========================================================================
-   Layout
-   ========================================================================== */
+table {
+    font-size: inherit;
+    font: 100%;
+}
+
+ul.posts {
+    list-style-type: none;
+    margin-bottom: 2em;
+}
+
+ul.posts li {
+    line-height: 1.75em;
+    text-align: left;
+}
+
+ul.posts span {
+    color: #aaa;
+    font-family: Monaco, "Courier New", monospace;
+    font-size: 80%;
+}
+
+li.index a {
+    background: white;
+}
+
+li.index a:hover {
+    background: #fef200;
+}
+
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 .site {
-    container-type: inline-size;
     font-size: 110%;
-    width: min(44em, 90%);
-    margin: 1em auto 2em;
+    width: 44em;
+    max-width: 90%;
+    margin: 1em auto 2em auto;
     line-height: 1.5em;
 }
 
-.site-header {
-    display: flex;
-    align-items: center;
-    gap: 1em;
+.title {
+    color: #000;
+    margin: 0;
+    font: 28px/32px 'DejaVuSerifCondensed-Bold', Arial, sans-serif;letter-spacing: 0;
 }
 
-/* Theme toggle: the checkbox is hidden visually but stays keyboard-focusable */
-#theme-toggle {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
+.site .title a {
+    color: #a00;
+    text-decoration: none;
 }
 
-.theme-toggle {
-    margin-left: auto;
-    display: inline-grid;
-    place-items: center;
-    width: 2.25rem;
-    height: 2.25rem;
-    border-radius: 50%;
-    color: var(--fg);
-    cursor: pointer;
-    transition: background-color .2s;
+.site .title a:hover {
+    color: black;
 }
 
-.theme-toggle:hover { background: var(--subtle); }
-
-:root:has(#theme-toggle:focus-visible) .theme-toggle {
-    outline: 2px solid var(--fg);
-    outline-offset: 2px;
+.site .title a.extra {
+    color: #aaa;
+    text-decoration: none;
+    margin-left: 1em;
 }
 
-.theme-toggle svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.site .title a.extra:hover {
+    color: black;
 }
 
-/* Show the icon of the scheme the button switches to */
-.icon-sun { display: none; }
-
-@media (prefers-color-scheme: light) {
-    :root:has(#theme-toggle:checked) .icon-sun  { display: block; }
-    :root:has(#theme-toggle:checked) .icon-moon { display: none; }
+.post-title {
+    margin: 60px auto;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root:not(:has(#theme-toggle:checked)) .icon-sun  { display: block; }
-    :root:not(:has(#theme-toggle:checked)) .icon-moon { display: none; }
+.site .meta {
+    color: #aaa;
 }
 
 .site footer {
     font-size: 80%;
-    color: var(--muted);
-    border-top: 4px solid var(--subtle);
+    color: #666;
+    border-top: 4px solid #eee;
     margin-top: 2em;
+    overflow: hidden;
 }
 
-#licence a {
-    background: transparent;
-    color: inherit;
-    padding: 0;
-    border-bottom: 2px solid var(--accent);
+#post {
+    margin-left: auto;
+    margin-right:auto;
 }
 
-/* ==========================================================================
-   Home
-   ========================================================================== */
+#post pre {
+    border: 1px dashed #ccc;
+    background-color: #fff;
+    padding: 0 .4em;
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+#post ul,
+#post ol {
+    margin-left: 1.25em;
+}
+
+#post code {
+    border: 1px solid #ddd;
+    background-color: #fff;
+    font-size: 80%;
+    padding: 0 .2em;
+}
+
+#post pre code {
+    border: none;
+}
+
+blockquote{
+    margin-left: 2em;
+    font-style:italic;
+    line-height: 180%;
+    font-size: 95%;
+}
+
+/* Fonts */
+@font-face {
+    font-family: 'DejaVuSerifCondensed-Bold';
+    src: url('DejaVuSerifCondensed-Bold.eot');
+    src: local('DejaVuSerifCondensed-Bold'), local('DejaVuSerifCondensed-Bold'), url('DejaVuSerifCondensed-Bold.woff') format('woff'), url('DejaVuSerifCondensed-Bold.ttf') format('truetype'), url('DejaVuSerifCondensed-Bold.svg#DejaVuSerifCondensed-Bold') format('svg');
+}
+
+.index-date{
+    font-size:90%;
+    font-style:italic;
+    float:left;
+    width: 120px;
+}
+
+.lead{
+    font-style:italic;
+    font-size:85%;
+    margin-bottom: .4em;
+}
+
 #hero {
     font-size: 1.5rem;
     line-height: 2rem;
 }
 
-ul.posts {
-    list-style: none;
-    margin-bottom: 2em;
+#licence a {
+    background-color: white;
+    border-bottom:solid 2px #fef200;
 }
-
-li.index {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    align-items: baseline;
-    line-height: 1.75em;
-}
-
-li.index a { background: transparent; color: var(--fg); }
-li.index a:hover { background: var(--accent); color: var(--on-accent); }
-
-.index-date {
-    font-size: 90%;
-    font-style: italic;
-}
-
-/* ==========================================================================
-   Post
-   ========================================================================== */
-/* Scales with the column width (replaces the old jQuery resize handler) */
-.post-title {
-    margin: 60px auto;
-    font-size: clamp(12px, 100cqi / 8.7, 120px);
-    line-height: 1;
-}
-
-#post pre {
-    border: 1px dashed var(--border);
-    background-color: var(--code-bg);
-    padding: 0 .4em;
-    margin-block: .5em;
-    overflow-x: auto;
-}
-
-#post :is(ul, ol) { margin-left: 1.25em; }
-
-#post code {
-    font-family: var(--font-mono);
-    border: 1px solid var(--subtle);
-    background-color: var(--code-bg);
-    font-size: 80%;
-    padding: 0 .2em;
-}
-
-#post pre code { border: none; }
-
 time {
-    display: block;
-    color: var(--muted);
+    color: grey;
     margin: 30px auto;
+    display: block;
 }

@@ -1,7 +1,9 @@
 ---
 layout: default
 ---
-<article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+<div span="title"><a href="/">home</a></div>
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
     <header class="post-header">
         <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
@@ -9,10 +11,24 @@ layout: default
 
     <div id="post" itemprop="articleBody">
         {{ content }}
+
     </div>
-
-    {% if page.collection == "posts" %}
-    <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%d %B %Y" }}</time>
-    {% endif %}
-
+    
 </article>
+
+<time>{{ page.date | date: "%d %B %Y" }}</time>
+
+{% if site.disqus.shortname %}
+{% include disqus_comments.html %}
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
