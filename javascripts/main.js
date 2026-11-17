@@ -1,26 +1,26 @@
-var msis = (function() {
-    var getFontSize = function() {
-        return Math.max(Math.min($(".site").width() / (0.87*10), parseFloat(120)), parseFloat(12));
-    };
+(function() {
+    var MIN_SIZE = 12;
+    var MAX_SIZE = 120;
 
-    var getLineHeight = function() {
-        return getFontSize();
+    var getContentWidth = function(el) {
+        // Equivalent of jQuery .width(): content width, padding excluded
+        return parseFloat(getComputedStyle(el).width) || 0;
     };
 
     var setPostsTitleFontSize = function() {
-        jQuery(".post-title").css('font-size', getFontSize());
-        jQuery(".post-title").css('line-height', getLineHeight() + "px");
+        var site = document.querySelector(".site");
+        if (!site) {
+            return;
+        }
+
+        var size = Math.max(Math.min(getContentWidth(site) / (0.87 * 10), MAX_SIZE), MIN_SIZE);
+
+        document.querySelectorAll(".post-title").forEach(function(title) {
+            title.style.fontSize = size + "px";
+            title.style.lineHeight = size + "px";
+        });
     };
 
-    return {
-        setPostTitleFontSize: setPostsTitleFontSize
-    };
+    document.addEventListener("DOMContentLoaded", setPostsTitleFontSize);
+    window.addEventListener("resize", setPostsTitleFontSize);
 })();
-
-$( document ).ready(function() {
-    msis.setPostTitleFontSize();
-});
-
-$( window ).resize(function() {
-    msis.setPostTitleFontSize();
-});
